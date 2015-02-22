@@ -12,8 +12,10 @@ On the default init.sh a *.war file from /deploy will be unpaked to the webapp/R
 ### Usage
 
 To run it with host dir's mounted:
+
 	$ docker run -itd -p 8080:8080 \
-        -v $hostDir/node:/node \
-        -v $hostDir/data:/data \
-        -v $hostDir/deploy:/deploy \
+        -v hostDir/node:/node \
+        -v hostDir/data:/data \
+        -v hostDir/deploy:/deploy \
 	kyberna/tomcat
+
