@@ -17,5 +17,5 @@ To run it with host dir's mounted:
         -v hostDir/node:/node \
         -v hostDir/data:/data \
         -v hostDir/deploy:/deploy \
-	kyberna/tomcat
+        kyberna/tomcat
 
