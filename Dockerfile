@@ -7,7 +7,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir /node && \
     mkdir /data && \
-    mkdir /deploy
+    mkdir /deploy && \
+	useradd -u 1000 -m tomcat
 
 ENV TOMCAT_MAJOR_VERSION 7
 ENV TOMCAT_MINOR_VERSION 7.0.59
