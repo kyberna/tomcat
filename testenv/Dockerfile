@@ -31,5 +31,4 @@ ADD run.sh /run.sh
 RUN chmod +x /*.sh
 
 EXPOSE 8080
-USER 1000:1000
 CMD ["/run.sh"]
