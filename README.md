@@ -3,6 +3,7 @@
 Changed some env to easily use it with your persistent data.
 
 ## Description
+- Actual Version: 7.0.62
 The idea is to use this tomcat with only one app deployd as root app.
 You can use the node.tar.gz from the repo.
 You can change your catalina_opts in /node/init.sh from the tar.gz or do other things like pull your last .war file from a repo to deploy.
