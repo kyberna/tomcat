@@ -1,4 +1,4 @@
-FROM tifayuki/java:7
+FROM java:7
 MAINTAINER Seti <sebastian.koehlmeier@kyberna.com>
 
 RUN apt-get update && \
@@ -11,7 +11,7 @@ RUN apt-get update && \
 	useradd -u 1000 -m tomcat
 
 ENV TOMCAT_MAJOR_VERSION 7
-ENV TOMCAT_MINOR_VERSION 7.0.62
+ENV TOMCAT_MINOR_VERSION 7.0.63
 ENV CATALINA_HOME /tomcat
 
 ENV CATALINA_BASE /node
