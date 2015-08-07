@@ -17,9 +17,10 @@ Changed some env to easily use it with your persistent data.
 
 To run it with host dir's mounted:
 
-	$ docker run -itd -p 8080:8080 \
-        -v hostDir/node:/node \
-        -v hostDir/data:/data \
-        -v hostDir/deploy:/deploy \
-        kyberna/tomcat
-
+```bash
+docker run -itd -p 8080:8080 \
+	-v hostDir/node:/node \
+	-v hostDir/data:/data \
+	-v hostDir/deploy:/deploy \
+	kyberna/tomcat
+```
