@@ -1,14 +1,8 @@
 # Kyberna AG Tomcat Docker image
 
-Changed some env to easily use it with your persistent data.
-
-## Description
-- Actual Version: 7.0.63
-
-### Intention
-* use this tomcat with only one app deployd as root app.
-* use the node.tar.gz from the repo, extract and use as host folders.
-
+* Based on the official tomcat Images.
+* Added SSH Client.
+* Changed ENVs to run with mounted Data / Apps
 
 ### Usage
 
