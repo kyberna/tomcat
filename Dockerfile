@@ -1,4 +1,4 @@
-FROM tomcat:8-jre8
+FROM tomcat:7-jre7
 MAINTAINER Seti <sebastian.koehlmeier@kyberna.com>
 
 RUN apt-get update && \
