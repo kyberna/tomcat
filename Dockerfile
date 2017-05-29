@@ -1,4 +1,4 @@
-FROM tomcat:8-jre7
+FROM tomcat:8-jre8
 MAINTAINER Seti <sebastian.koehlmeier@kyberna.com>
 
 RUN apt-get update && \
@@ -18,7 +18,7 @@ ENV CATALINA_TMPDIR /$CATALINA_BASE/temp
 # INSTALL TOMCAT
 
 ADD run.sh /run.sh
-RUN chmod +x /*.sh
+RUN chmod +x /*.sh && chmod o+rx ${CATALINA_HOME} -R
 
 EXPOSE 8080
 USER 1000:1000
