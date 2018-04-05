@@ -49,6 +49,8 @@ CATALINA_OPTS="$CATALINA_OPTS -XX:+CMSClassUnloadingEnabled"
 CATALINA_OPTS="$CATALINA_OPTS -XX:+CMSClassUnloadingEnabled"
 CATALINA_OPTS="$CATALINA_OPTS -Dspring.profiles.active=DEPLOYMENT"
 CATALINA_OPTS="$CATALINA_OPTS -Dfile.encoding=UTF-8"
+CATALINA_OPTS="$CATALINA_OPTS -Dmail.mime.encodefilename=true"
+CATALINA_OPTS="$CATALINA_OPTS -Dmail.mime.decodefilename=true"
 
 
 if [ "$DISABLE_DEFAULT_DEPLOY" != "true" ]; then
