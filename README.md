@@ -20,6 +20,7 @@
 * DATA: data directory -> default: /data
 * CONF: application config directory -> default: /conf
 * PROPERTIES_PROFILES: default: not set
+* ADDITIONAL_OPTS: default: not set
 * RMI_HOSTNAME: default: not set
 ---
 * DISABLE_DEFAULT_DEPLOY: to disable default deployment set to 'true' -> default: not set

@@ -50,6 +50,9 @@ CATALINA_OPTS="$CATALINA_OPTS -XX:+CMSClassUnloadingEnabled"
 CATALINA_OPTS="$CATALINA_OPTS -Dspring.profiles.active=DEPLOYMENT"
 CATALINA_OPTS="$CATALINA_OPTS -Dfile.encoding=UTF-8"
 
+if [ "$ADDITIONAL_OPTS" != "" ]; then
+    CATALINA_OPTS="$CATALINA_OPTS $ADDITIONAL_OPTS"
+fi
 
 if [ "$DISABLE_DEFAULT_DEPLOY" != "true" ]; then
     rm -rf /node/webapps/*
