@@ -70,6 +70,10 @@ if [ "$(ls /tconf | wc -l)" == "0" ] && [ ! -d /node/conf ]; then
     ln -s /tconf /node/conf
 fi
 
+if [ "$CLUSTER" == "true" ]; then
+    cp -f /tconf/server.cluster.xml /tconf/server.xml
+fi
+
 if [ "$(ls /tlib | wc -l)" != "0" ]; then
     cp /tlib/* /node/lib -f
 fi

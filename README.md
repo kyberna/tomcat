@@ -26,6 +26,8 @@
 * DISABLE_DEFAULT_DEPLOY: to disable default deployment set to 'true' -> default: not set
 * ADDITIONAL_SCRIPT: additional script to be executet befor start -> default: not set
 ---
+* CLUSTER: to enable a server.xml with SimpleTcpCluster configured set to 'true' -> default: not set
+---
 * JMX_PORT: for debuging -> default: not set
 ---
 
