@@ -48,11 +48,11 @@
                         selectorTimeout="5000"
                         maxThreads="6"/>
 
-                <Sender className="org.apache.catalina.tribes.transport.ReplicationTransmitter">
-                    <Transport className="org.apache.catalina.tribes.transport.nio.PooledParallelSender"/>
-                </Sender>
-                <Interceptor className="org.apache.catalina.tribes.group.interceptors.TcpFailureDetector"/>
-                <Interceptor className="org.apache.catalina.tribes.group.interceptors.MessageDispatchInterceptor"/>
+                    <Sender className="org.apache.catalina.tribes.transport.ReplicationTransmitter">
+                        <Transport className="org.apache.catalina.tribes.transport.nio.PooledParallelSender"/>
+                    </Sender>
+                    <Interceptor className="org.apache.catalina.tribes.group.interceptors.TcpFailureDetector"/>
+                    <Interceptor className="org.apache.catalina.tribes.group.interceptors.MessageDispatchInterceptor"/>
                 </Channel>
 
                 <Valve className="org.apache.catalina.ha.tcp.ReplicationValve"
