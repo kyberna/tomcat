@@ -52,6 +52,9 @@ CATALINA_OPTS="$CATALINA_OPTS -Dfile.encoding=UTF-8"
 CATALINA_OPTS="$CATALINA_OPTS -Dmail.mime.encodefilename=true"
 CATALINA_OPTS="$CATALINA_OPTS -Dmail.mime.decodefilename=true"
 
+if [ "$ADDITIONAL_OPTS" != "" ]; then
+    CATALINA_OPTS="$CATALINA_OPTS $ADDITIONAL_OPTS"
+fi
 
 if [ "$DISABLE_DEFAULT_DEPLOY" != "true" ]; then
     rm -rf /node/webapps/*
@@ -67,6 +70,10 @@ fi
 if [ "$(ls /tconf | wc -l)" == "0" ] && [ ! -d /node/conf ]; then
     cp -rp /node/conftemplate/* /tconf
     ln -s /tconf /node/conf
+fi
+
+if [ "$CLUSTER" == "true" ]; then
+    cp -f /tconf/server.cluster.xml /tconf/server.xml
 fi
 
 if [ "$(ls /tlib | wc -l)" != "0" ]; then
