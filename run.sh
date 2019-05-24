@@ -42,11 +42,12 @@ if [ "$PROPERTIES_PROFILES" != "" ]; then
     CATALINA_OPTS="$CATALINA_OPTS -Dplatform.application.properties.profiles.active=$PROPERTIES_PROFILES"
 fi
 
-CATALINA_OPTS="$CATALINA_OPTS -XX:+UseConcMarkSweepGC"
-CATALINA_OPTS="$CATALINA_OPTS -XX:NewSize=256m"
-CATALINA_OPTS="$CATALINA_OPTS -XX:MaxNewSize=256m"
-CATALINA_OPTS="$CATALINA_OPTS -XX:+CMSClassUnloadingEnabled"
-CATALINA_OPTS="$CATALINA_OPTS -XX:+CMSClassUnloadingEnabled"
+#GC
+CATALINA_OPTS="$CATALINA_OPTS -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:ConcGCThreads=5"
+CATALINA_OPTS="$CATALINA_OPTS -XX:ParallelGCThreads=20 -XX:NewSize=256m -XX:MaxNewSize=256m"
+CATALINA_OPTS="$CATALINA_OPTS -XX:TargetSurvivorRatio=75 -XX:SurvivorRatio=6 -XX:NewRatio=6"
+
+#other default ky2 settings
 CATALINA_OPTS="$CATALINA_OPTS -Dspring.profiles.active=DEPLOYMENT"
 CATALINA_OPTS="$CATALINA_OPTS -Dfile.encoding=UTF-8"
 CATALINA_OPTS="$CATALINA_OPTS -Dmail.mime.encodefilename=true"
