@@ -70,7 +70,11 @@ fi
 
 if [ "$(ls /tconf | wc -l)" == "0" ] && [ ! -d /node/conf ]; then
     cp -rp /node/conftemplate/* /tconf
-    ln -s /tconf /node/conf
+fi
+
+if [ -d /tconf ];
+then
+    cp -f /tconf /node/conf
 fi
 
 if [ "$CLUSTER" == "true" ]; then
