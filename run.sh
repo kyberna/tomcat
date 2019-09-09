@@ -67,6 +67,12 @@ if [ "$DISABLE_DEFAULT_DEPLOY" != "true" ]; then
     unzip /deploy/*.war -d /node/webapps/ROOT/
 fi
 
+if [ "$SECURE_COOKIE" == "true" ]; then
+    cp /node/conftemplate/webhttps.xml /node/conftemplate/web.xml
+else
+    cp /node/conftemplate/webhttp.xml /node/conftemplate/web.xml
+fi
+
 if [ "$(ls /tconf | wc -l)" == "0" ] && [ ! -d /node/conf ]; then
     cp -rp /node/conftemplate/* /tconf
     ln -s /tconf /node/conf
