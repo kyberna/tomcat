@@ -15,6 +15,7 @@
 * /tconf: configuration files from tomcat/conf
 
 #### Environments
+* SECURE_COOKIE: Set to true if you are behind an SSL Terminating proxy, Tomcat will set the secure cookie flag. Default: false
 * XMX: Max Memory -> default: 2G
 * LICENSE: Path to license file -> default: /conf/license.lic
 * DATA: data directory -> default: /data
