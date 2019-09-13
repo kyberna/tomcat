@@ -77,15 +77,14 @@ if [ -d /node/conftemplate ]; then
     else
         cp /node/conftemplate/webhttp.xml /node/conftemplate/web.xml
     fi
-
-    if [ "$(ls /tconf | wc -l)" == "0" ] && [ ! -d /node/conf ]; then
-        cp -rp /node/conftemplate/* /tconf
-        ln -s /tconf /node/conf
-    fi
-else
+elif [ "$SECURE_COOKIE" == "true" ]; then
     echo "============================================================================"
     echo "You need to Upgrade to new Structure (mount /conf, and not /node) to use SECURE_COOKIE Env"
     echo "============================================================================"
+fi
+
+if [ "$(ls /tconf | wc -l)" == "0" ] && [ ! -d /node/conf ] && [ -d /node/conftemplate ]; then
+    cp -rp /node/conftemplate/* /tconf
 fi
 
 if [ "$CLUSTER" == "true" ]; then
@@ -103,6 +102,10 @@ fi
 # for backward compatibility
 if [ -e /node/init.sh ]; then
     source /node/init.sh
+fi
+
+if [ -d /tconf ]; then
+    cp -f /tconf /node/conf
 fi
 
 export CATALINA_OPTS="$CATALINA_OPTS"
