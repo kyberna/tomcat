@@ -60,22 +60,31 @@ if [ "$DISABLE_DEFAULT_DEPLOY" != "true" ]; then
     rm -rf /node/webapps/*
     rm -rf /node/work/*
     rm -rf /node/temp/*
-    rm -rf /node/logs/*
+    rm -rf /node/logs
     rm -rf /data/logs/*
 
     mkdir /node/webapps/ROOT
     unzip /deploy/*.war -d /node/webapps/ROOT/
+
+    mkdir /data/logs/$(hostname)
+    chmod 0777 /data/logs/$(hostname)
 fi
 
-if [ "$SECURE_COOKIE" == "true" ]; then
-    cp /node/conftemplate/webhttps.xml /node/conftemplate/web.xml
+if [ -d /node/conftemplate ]; then
+    if [ "$SECURE_COOKIE" == "true" ]; then
+        cp /node/conftemplate/webhttps.xml /node/conftemplate/web.xml
+    else
+        cp /node/conftemplate/webhttp.xml /node/conftemplate/web.xml
+    fi
+
+    if [ "$(ls /tconf | wc -l)" == "0" ] && [ ! -d /node/conf ]; then
+        cp -rp /node/conftemplate/* /tconf
+        ln -s /tconf /node/conf
+    fi
 else
-    cp /node/conftemplate/webhttp.xml /node/conftemplate/web.xml
-fi
-
-if [ "$(ls /tconf | wc -l)" == "0" ] && [ ! -d /node/conf ]; then
-    cp -rp /node/conftemplate/* /tconf
-    ln -s /tconf /node/conf
+    echo "============================================================================"
+    echo "You need to Upgrade to new Structure (mount /conf, and not /node) to use SECURE_COOKIE Env"
+    echo "============================================================================"
 fi
 
 if [ "$CLUSTER" == "true" ]; then
