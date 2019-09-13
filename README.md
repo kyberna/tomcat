@@ -15,6 +15,8 @@
 * /tconf: configuration files from tomcat/conf
 
 #### Environments
+* UserID: Set custom User ID. Default: 1000
+* GroupID: Set custom Group ID. Default: 1000
 * SECURE_COOKIE: Set to true if you are behind an SSL Terminating proxy, Tomcat will set the secure cookie flag. Default: false
 * XMX: Max Memory -> default: 2G
 * LICENSE: Path to license file -> default: /conf/license.lic

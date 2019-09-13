@@ -1,5 +1,11 @@
 #!/bin/bash
 
+groupadd -g ${GroupID} tomcat
+useradd -u ${UserID} -g ${GroupID} -m tomcat
+chmod +x /*.sh
+chmod o+rx ${CATALINA_HOME} -R
+chown ${UserID}:${GroupID} /data /deploy /conf /tconf /tlib /node -R
+
 CATALINA_OPTS="-server"
 
 if [ "$XMX" != "" ]; then
@@ -109,4 +115,4 @@ if [ -d /tconf ]; then
 fi
 
 export CATALINA_OPTS="$CATALINA_OPTS"
-exec ${CATALINA_HOME}/bin/catalina.sh run
+su tomcat -c 'exec ${CATALINA_HOME}/bin/catalina.sh run'
