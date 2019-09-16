@@ -1,10 +1,7 @@
 #!/bin/bash
 
-groupadd -g ${GroupID} tomcat
-useradd -u ${UserID} -g ${GroupID} -m tomcat
-chmod +x /*.sh
-chmod o+rx ${CATALINA_HOME} -R
-chown ${UserID}:${GroupID} /data /deploy /conf /tconf /tlib /node -R
+usermod -u ${UserID} tomcat
+groupmod -g ${GroupID} tomcat
 
 CATALINA_OPTS="-server"
 
@@ -73,8 +70,8 @@ if [ "$DISABLE_DEFAULT_DEPLOY" != "true" ]; then
     mkdir /node/webapps/ROOT
     unzip /deploy/*.war -d /node/webapps/ROOT/
 
-    mkdir /data/logs/$(hostname)
-    chmod 0777 /data/logs/$(hostname)
+    mkdir /data/logs/$(cat /etc/hostname)
+    chmod 0777 /data/logs/$(cat /etc/hostname)
 fi
 
 if [ -d /node/conftemplate ]; then
@@ -101,18 +98,11 @@ if [ "$(ls /tlib | wc -l)" != "0" ]; then
     cp /tlib/* /node/lib -f
 fi
 
-if [ "$ADDITIONAL_SCRIPT" != "" ]; then
-    source $ADDITIONAL_SCRIPT
-fi
-
-# for backward compatibility
-if [ -e /node/init.sh ]; then
-    source /node/init.sh
-fi
-
 if [ -d /tconf ]; then
-    cp -f /tconf /node/conf
+    cp -rf /tconf /node/conf
 fi
 
-export CATALINA_OPTS="$CATALINA_OPTS"
-su tomcat -c 'exec ${CATALINA_HOME}/bin/catalina.sh run'
+chmod o+rx ${CATALINA_HOME} -R
+chown ${UserID}:${GroupID} /data /deploy /conf /tconf /tlib $CATALINA_HOME $CATALINA_BASE -R
+
+su tomcat -c $1
