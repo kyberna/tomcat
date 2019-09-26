@@ -8,7 +8,7 @@ ENV GroupID=1000
 
 ADD root /
 
-RUN yum update && \
+RUN yum update -y && \
     yum install -y openssh-clients unzip wget && \
     yum clean all && \
     rm -rf /var/cache/yum && \
