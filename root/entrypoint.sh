@@ -29,8 +29,8 @@ elif [ "$SECURE_COOKIE" == "true" ]; then
     echo "============================================================================"
 fi
 
-if [ "$(ls /tconf | wc -l)" == "0" ] && [ ! -d /node/conf ] && [ -d /node/conftemplate ]; then
-    cp -rp /node/conftemplate/* /tconf
+if [ ! -d /node/conf ] && [ -d /node/conftemplate ]; then
+    cp -nrp /node/conftemplate/* /tconf
 fi
 
 if [ "$CLUSTER" == "true" ]; then
