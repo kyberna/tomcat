@@ -83,7 +83,7 @@ elif [ "$SECURE_COOKIE" == "true" ]; then
 fi
 
 if [ ! -d /node/conf ] && [ -d /node/conftemplate ]; then
-    cp -nrp /node/conftemplate/* /tconf
+    cp -nrp /node/conftemplate/. /tconf
 fi
 
 if [ "$CLUSTER" == "true" ]; then
@@ -104,7 +104,7 @@ if [ -e /node/init.sh ]; then
 fi
 
 if [ -d /tconf ]; then
-    cp -f /tconf/* /node/conf
+    cp -rf /tconf/. /node/conf
 fi
 
 export CATALINA_OPTS="$CATALINA_OPTS"
