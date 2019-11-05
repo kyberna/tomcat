@@ -30,7 +30,7 @@ elif [ "$SECURE_COOKIE" == "true" ]; then
 fi
 
 if [ ! -d /node/conf ] && [ -d /node/conftemplate ]; then
-    cp -nrp /node/conftemplate/* /tconf
+    cp -nrp /node/conftemplate/. /tconf
 fi
 
 if [ "$CLUSTER" == "true" ]; then
@@ -42,7 +42,7 @@ if [ "$(ls /tlib | wc -l)" != "0" ]; then
 fi
 
 if [ -d /tconf ]; then
-    cp -rf /tconf /node/conf
+    cp -rf /tconf/. /node/conf
 fi
 
 chmod o+rx ${CATALINA_HOME} -R
