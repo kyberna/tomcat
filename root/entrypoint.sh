@@ -8,7 +8,6 @@ if [ "$DISABLE_DEFAULT_DEPLOY" != "true" ]; then
     rm -rf /node/work/*
     rm -rf /node/temp/*
     rm -rf /node/logs
-    rm -rf /data/logs/*
 
     mkdir /node/webapps/ROOT
     unzip /deploy/*.war -d /node/webapps/ROOT/
