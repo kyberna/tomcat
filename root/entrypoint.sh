@@ -12,7 +12,7 @@ if [ "$DISABLE_DEFAULT_DEPLOY" != "true" ]; then
     mkdir /node/webapps/ROOT
     unzip /deploy/*.war -d /node/webapps/ROOT/
 
-    mkdir /data/logs/$(cat /etc/hostname)
+    mkdir -p /data/logs/$(cat /etc/hostname)
     chmod 0777 /data/logs/$(cat /etc/hostname)
 fi
 
