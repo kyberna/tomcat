@@ -14,6 +14,11 @@ if [ "$DISABLE_DEFAULT_DEPLOY" != "true" ]; then
 
     mkdir -p /data/logs/$(cat /etc/hostname)
     chmod 0777 /data/logs/$(cat /etc/hostname)
+    
+    #tomcat Logs
+    mkdir -p /data/logs/tomcat
+    chmod 0777 /data/logs/tomcat
+    ln -s /data/logs/tomcat /node/logs
 fi
 
 if [ -d /node/conftemplate ]; then
