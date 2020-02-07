@@ -16,13 +16,12 @@
     
     <Service name="Catalina">
         <Connector port="8080" 
-			protocol="org.apache.coyote.http11.Http11NioProtocol" 
+			protocol="org.apache.coyote.http11.Http11Nio2Protocol" 
 			connectionTimeout="3000" 
 			redirectPort="8300" 
-			compression="on" 
-			compressionMinSize="2048" 
-			noCompressionUserAgents="gozilla, traviata" 
-			compressableMimeType="text/html,text/xml,text/plain,text/css, text/javascript,text/json,application/x-javascript,application/javascript,application/json,application/xhtml+xml,application/xml" />
+			compression="on">
+            <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" compression="on"/>
+        </Connector>
         <Engine name="Catalina" defaultHost="localhost" jvmRoute="node1">
             <Realm className="org.apache.catalina.realm.LockOutRealm">
                 <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/>
@@ -30,6 +29,7 @@
             <Host name="localhost" appBase="webapps" unpackWARs="true" autoDeploy="true">
                 <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" prefix="localhost_access_log." suffix=".txt" pattern="%h %l %u %t &quot;%r&quot; %s %b" />
             </Host>
+            <Valve className="org.apache.catalina.valves.RemoteIpValve"/>
         </Engine>
     </Service>
     
