@@ -1,4 +1,4 @@
-FROM tomcat:8-jdk8-corretto
+FROM tomcat:9-jdk8-corretto
 LABEL maintainer="Seti <sebastian.koehlmeier@kyberna.com>"
 
 ENV CATALINA_BASE /node
@@ -9,7 +9,7 @@ ENV GroupID=1000
 ADD root /
 
 RUN yum update -y && \
-    yum install -y openssh-clients unzip wget && \
+    yum install -y openssh-clients unzip wget tar && \
     yum clean all && \
     rm -rf /var/cache/yum && \
     mkdir /conf /tlib /tconf /data /deploy && \
