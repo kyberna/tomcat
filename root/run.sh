@@ -43,9 +43,7 @@ if [ "$PROPERTIES_PROFILES" != "" ]; then
 fi
 
 #GC
-CATALINA_OPTS="$CATALINA_OPTS -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:ConcGCThreads=5"
-CATALINA_OPTS="$CATALINA_OPTS -XX:ParallelGCThreads=20 -XX:NewSize=256m -XX:MaxNewSize=256m"
-CATALINA_OPTS="$CATALINA_OPTS -XX:TargetSurvivorRatio=75 -XX:SurvivorRatio=6 -XX:NewRatio=6"
+CATALINA_OPTS="$CATALINA_OPTS -XX:+UseG1GC"
 CATALINA_OPTS="$CATALINA_OPTS -XX:+UseStringDeduplication"
 
 #other default ky2 settings
