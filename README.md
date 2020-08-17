@@ -13,6 +13,7 @@
 * /deploy: deploy folder were the .war file needs to be placed
 * /tlib: libs copied to tomcat dir
 * /tconf: configuration files from tomcat/conf
+* /certs: cert files in this volume are imported to the truststore on startup.
 
 #### Environments
 * UserID: Set custom User ID. Default: 1000

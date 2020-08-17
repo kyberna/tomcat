@@ -49,6 +49,17 @@ if [ -d /tconf ]; then
     cp -rf /tconf/. /node/conf
 fi
 
+if [ -d /certs ]; then
+    for cert in $(ls -1 /certs);
+    do
+        certfile="/certs/$cert"
+        alias="${certfile##*/}"
+        alias="${filename%.*}"
+        echo "Import $certfile with alias $alias"
+        keytool -import -file "$certfile" -alias "$alias" -keystore "$JAVA_HOME/jre/lib/security/cacerts" -storepass changeit
+    done
+fi
+
 chmod o+rx ${CATALINA_HOME} -R
 chown ${UserID}:${GroupID} /data /deploy /conf /tconf /tlib $CATALINA_HOME $CATALINA_BASE -R
 

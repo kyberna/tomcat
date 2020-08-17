@@ -19,7 +19,7 @@ RUN yum update -y && \
     groupadd -g ${GroupID} tomcat && \
     useradd -u ${UserID} -g ${GroupID} -m tomcat
 
-VOLUME [ "/data", "/conf", "/deploy", "/properties", "/tconf", "/tlib" ]
+VOLUME [ "/data", "/conf", "/deploy", "/properties", "/tconf", "/tlib", "/certs" ]
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 CMD ["/run.sh"]
