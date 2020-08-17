@@ -54,9 +54,9 @@ if [ -d /certs ]; then
     do
         certfile="/certs/$cert"
         alias="${certfile##*/}"
-        alias="${filename%.*}"
+        alias="${alias%.*}"
         echo "Import $certfile with alias $alias"
-        keytool -import -file "$certfile" -alias "$alias" -keystore "$JAVA_HOME/jre/lib/security/cacerts" -storepass changeit
+        keytool -import -file "$certfile" -alias "$alias" -keystore "$JAVA_HOME/jre/lib/security/cacerts" -storepass changeit -noprompt
     done
 fi
 
