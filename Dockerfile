@@ -15,7 +15,6 @@ RUN yum update -y && \
     mkdir /conf /tlib /tconf /data /deploy && \
     mkdir /node/logs /node/temp /node/webapps /node/work && \
     chmod +x /*.sh && \
-    sed -i 's/4096/unlimited/g' /etc/security/limits.d/20-nproc.conf && \
     groupadd -g ${GroupID} tomcat && \
     useradd -u ${UserID} -g ${GroupID} -m tomcat
 
