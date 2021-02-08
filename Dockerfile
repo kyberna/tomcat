@@ -1,4 +1,4 @@
-FROM tomcat:9-jdk8-corretto
+FROM tomcat:10-jdk8-corretto
 LABEL maintainer="Seti <sebastian.koehlmeier@kyberna.com>"
 
 ENV CATALINA_BASE /node
