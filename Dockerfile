@@ -12,7 +12,8 @@ RUN mkdir /conf /tlib /tconf /data /deploy && \
     mkdir /node/logs /node/temp /node/webapps /node/work && \
     chmod +x /*.sh && \
     groupadd -g ${GroupID} tomcat && \
-    useradd -u ${UserID} -g ${GroupID} -m tomcat
+    useradd -u ${UserID} -g ${GroupID} -m tomcat && \
+    apt update && apt install -y unzip && rm -rf /var/lib/apt/lists/*
 
 VOLUME [ "/data", "/conf", "/deploy", "/properties", "/tconf", "/tlib", "/certs" ]
 
