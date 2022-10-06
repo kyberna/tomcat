@@ -23,6 +23,7 @@ fi
 
 PRODMAJOR=$(grep productVersion /node/webapps/ROOT/META-INF/MANIFEST.MF | cut -d " " -f2 | cut -d "." -f1,2)
 echo "ky2help Major Version: $PRODMAJOR"
+
 if [ "$PRODMAJOR" == "4.12" ];
 then
     rm -f /node/lib/mysql-connector-java-8.0.18.jar
