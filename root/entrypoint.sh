@@ -21,6 +21,17 @@ if [ "$DISABLE_DEFAULT_DEPLOY" != "true" ]; then
     ln -s /data/logs/tomcat /node/logs
 fi
 
+PRODMAJOR=$(grep productVersion /node/webapps/ROOT/META-INF/MANIFEST.MF | cut -d " " -f2 | cut -d "." -f1,2)
+echo "ky2help Major Version: $PRODMAJOR"
+if [ "$PRODMAJOR" == "4.12" ];
+then
+    rm -f /node/lib/mysql-connector-java-8.0.18.jar
+else
+    rm -f /node/lib/mysql-connector-java-8.0.30.jar
+    rm -f /node/lib/mariadb-java-client-3.0.8.jar
+fi
+
+
 if [ -d /node/conftemplate ]; then
     if [ "$SECURE_COOKIE" == "true" ]; then
         cp /node/conftemplate/webhttps.xml /node/conftemplate/web.xml
