@@ -34,7 +34,7 @@ if [ -d /node/conftemplate ]; then
     if [ "$CLUSTER" == "true" ]; then
         cp -f /node/conftemplate/server.cluster.xml /node/conftemplate/server.xml
     else
-        cp -f /node/conftemplate/server.nocluster.xml/node/conftemplate/server.xml
+        cp -f /node/conftemplate/server.nocluster.xml /node/conftemplate/server.xml
     fi
 fi
 
