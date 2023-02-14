@@ -39,7 +39,7 @@ if [ -d /node/conftemplate ]; then
 fi
 
 # rm old config folder if it exists from previous run
-if [ -d /node/conf]; then
+if [ -d /node/conf ]; then
     rm -rf /node/conf
 fi
 
