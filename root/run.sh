@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CATALINA_OPTS="-server"
+CATALINA_OPTS="-server -Djava.locale.providers=COMPAT,SPI"
 
 if [ "$XMX" != "" ]; then
     CATALINA_OPTS="$CATALINA_OPTS -Xmx$XMX"
