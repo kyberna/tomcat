@@ -31,5 +31,5 @@
     <!--
     <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
     -->
-
+    <CookieProcessor sameSiteCookies="strict" />
 </Context>

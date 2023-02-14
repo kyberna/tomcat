@@ -24,42 +24,41 @@ fi
 PRODMAJOR=$(grep productVersion /node/webapps/ROOT/META-INF/MANIFEST.MF | cut -d " " -f2 | cut -d "." -f1,2 | cut -d "-" -f1)
 echo "ky2help Major Version: $PRODMAJOR"
 
-if [[ "$PRODMAJOR" == "4.12" || "$PRODMAJOR" == "4.13" ]];
-then
-    rm -f /node/lib/mysql-connector-java-8.0.18.jar
-else
-    rm -f /node/lib/mysql-connector-java-8.0.30.jar
-    rm -f /node/lib/mariadb-java-client-3.0.8.jar
-fi
-
-
+# prepare conftemplate from env flags
 if [ -d /node/conftemplate ]; then
     if [ "$SECURE_COOKIE" == "true" ]; then
-        cp /node/conftemplate/webhttps.xml /node/conftemplate/web.xml
+        cp -f /node/conftemplate/webhttps.xml /node/conftemplate/web.xml
     else
-        cp /node/conftemplate/webhttp.xml /node/conftemplate/web.xml
+        cp -f /node/conftemplate/webhttp.xml /node/conftemplate/web.xml
     fi
-elif [ "$SECURE_COOKIE" == "true" ]; then
-    echo "============================================================================"
-    echo "You need to Upgrade to new Structure (mount /conf, and not /node) to use SECURE_COOKIE Env"
-    echo "============================================================================"
+    if [ "$CLUSTER" == "true" ]; then
+        cp -f /node/conftemplate/server.cluster.xml /node/conftemplate/server.xml
+    else
+        cp -f /node/conftemplate/server.nocluster.xml/node/conftemplate/server.xml
+    fi
 fi
 
-if [ ! -d /node/conf ] && [ -d /node/conftemplate ]; then
-    cp -nrp /node/conftemplate/. /tconf
+# rm old config folder if it exists from previous run
+if [ -d /node/conf]; then
+    rm -rf /node/conf
 fi
 
-if [ "$CLUSTER" == "true" ]; then
-    cp -f /tconf/server.cluster.xml /tconf/server.xml
+# copy conftemplate to conf for base configs
+if [ -d /node/conftemplate ]; then
+    cp -rf /node/conftemplate /node/conf
 fi
+
+# copy mounted configs over existing
+if [ -d /tconf ]; then
+    cp -rf /tconf/. /node/conf
+fi
+
 
 if [ "$(ls /tlib | wc -l)" != "0" ]; then
     cp /tlib/* /node/lib -f
 fi
 
-if [ -d /tconf ]; then
-    cp -rf /tconf/. /node/conf
-fi
+
 
 if [ -d /certs ]; then
     for cert in $(ls -1 /certs);
